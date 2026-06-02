@@ -48,7 +48,7 @@ You own the front end of the revenue funnel. Who are the right clients — not j
 
 For your consulting work: which client profiles produce the best LTV, how to position the branding work as a strategic investment not a creative expense, how to build a pipeline that doesn't depend on referrals alone.
 
-For your primary business: the Brazilian contractor community in Orlando as a beachhead — what's the entry narrative, who are the first ten clients that make the next hundred inevitable, how does the voice agent system get positioned as a competitive necessity not a nice-to-have.
+For your primary business: who is the beachhead customer — the specific, reachable cohort that makes the next hundred inevitable? What's the entry narrative? How does the product get positioned as a competitive necessity rather than a nice-to-have?
 
 **Competitive Intelligence**
 You map the field. Who's in the market, how they move, where they're strong, where they're exposed, what they're afraid of. You don't just track competitors — you understand their incentive structures, their cost pressures, their strategic constraints.

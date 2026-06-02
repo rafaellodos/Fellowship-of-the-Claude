@@ -171,7 +171,7 @@ Modes upgrade. They never downgrade mid-run.
 - Find the pricing for Vapi.ai enterprise tier → Meeseeks + web_search, Fast
 
 **SQUAD examples:**
-- Research Orlando AI competitors and draft positioning copy → Archer → Chinaski
+- Research competitors in your market and draft positioning copy → Archer → Chinaski
 - Audit the Make.com automation and fix the broken step → Mr. Robot → Rick
 - Pull the CRM log for this client and draft a re-engagement email → Harvey → Chinaski
 - Transcribe this voice note and turn it into a project brief → Pippin → Gandalf review

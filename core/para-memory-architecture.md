@@ -101,4 +101,4 @@ When writing memory at session close, agents use this decision to classify their
 *PARA Memory Architecture — Core Decision*
 *Fellowship of the Raf — /fellowship/core/para-memory-architecture.md*
 *Decided: 2026-06-02*
-*Relates to: [[architecture_v2.md]], [[fellowship.md]], [[memory-bridge.md]]*
+*Relates to: architecture_v2.md, fellowship.md, memory-bridge.md*

@@ -337,7 +337,7 @@ Gandalf determines run mode immediately after reading brief.md. The mode determi
 - No irreversible consequences, no significant ethical or legal exposure
 
 **Example:**
-Brief: Write three positioning statements for your primary business targeting Brazilian contractors in Orlando.
+Brief: Write three positioning statements targeting your core customer segment.
 Mode: Simple — Archer (market context) → Chinaski (writes the three statements) → done.
 Plan: In Aragorn. Two agents, one session, clean sequence.
 

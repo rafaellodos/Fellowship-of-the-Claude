@@ -1,7 +1,7 @@
 # SKILL: CRM READ/WRITE
-## [[Fellowship]] Skill — Contact and Deal Intelligence
+## the fellowship Skill — Contact and Deal Intelligence
 ### Lives at: /fellowship/skills/crm_read_write.md
-### Available to: [[Harvey.ID]] (primary), [[Merry.ID]], [[Fellowship of the Raf .MK1/Gandalf.ID]]
+### Available to: Harvey.ID (primary), Merry.ID, Fellowship of the Raf .MK1/Gandalf.ID
 
 ---
 
@@ -9,9 +9,9 @@
 
 Direct read and write access to the operator's contact and deal records across Airtable and Google Sheets. The ability to retrieve relationship history before a conversation, log what happened after one, update deal stages as they move, and surface relationship intelligence that would otherwise sit unseen in a spreadsheet.
 
-Without this skill, [[Harvey.ID]] reasons about relationships and deals from whatever the operator tells him in the brief. With it, [[Harvey.ID]] reads the actual history — last contact date, prior conversations, deal stage, open items — and the intelligence is grounded in reality rather than memory.
+Without this skill, Harvey.ID reasons about relationships and deals from whatever the operator tells him in the brief. With it, Harvey.ID reads the actual history — last contact date, prior conversations, deal stage, open items — and the intelligence is grounded in reality rather than memory.
 
-This is the skill that makes [[Harvey.ID]] a functioning business development engine rather than a strategic advisor who has to be manually briefed every time.
+This is the skill that makes Harvey.ID a functioning business development engine rather than a strategic advisor who has to be manually briefed every time.
 
 ---
 
@@ -19,16 +19,16 @@ This is the skill that makes [[Harvey.ID]] a functioning business development en
 
 | Agent | Access Level | Primary Use |
 |---|---|---|
-| [[Harvey.ID]] | Read + Write | Relationship intelligence, deal tracking, pre-conversation briefings, post-conversation logging |
-| [[Merry.ID]] | Read + Write | Logging incoming client communications to contact records, flagging contact-related inputs |
-| [[Fellowship of the Raf .MK1/Gandalf.ID]] | Read only | Project context — understanding relationship history when it's relevant to a project plan |
+| Harvey.ID | Read + Write | Relationship intelligence, deal tracking, pre-conversation briefings, post-conversation logging |
+| Merry.ID | Read + Write | Logging incoming client communications to contact records, flagging contact-related inputs |
+| Fellowship of the Raf .MK1/Gandalf.ID | Read only | Project context — understanding relationship history when it's relevant to a project plan |
 
 ---
 
 ## DATA SOURCES
 
 ### SOURCE 1 — AIRTABLE
-the operator's operational Airtable base. The [[Fellowship]] reads from and writes to specific tables.
+the operator's operational Airtable base. The the fellowship reads from and writes to specific tables.
 
 **Tables in scope:**
 
@@ -40,7 +40,7 @@ the operator's operational Airtable base. The [[Fellowship]] reads from and writ
 | Companies | ✓ | ✗ | Company records — read only, updated manually |
 
 **Tables out of scope:**
-Anything related to your primary business's operational pipeline for Plenty Pavers — that's a client system, not the operator's personal CRM. The [[Fellowship]] does not write to client operational data.
+Anything related to your primary business's operational pipeline for your clients — that's a client system, not the operator's personal CRM. The the fellowship does not write to client operational data.
 
 ### SOURCE 2 — GOOGLE SHEETS
 the operator's contact and pipeline spreadsheets. Read-only access — Sheets is the source of record for data that hasn't been migrated to Airtable yet. Write operations go to Airtable only.
@@ -71,7 +71,7 @@ CRM_READ:
 ```
 
 ### RELATIONSHIP BRIEF
-Pre-conversation intelligence package. [[Harvey.ID]]'s primary read operation.
+Pre-conversation intelligence package. Harvey.ID's primary read operation.
 
 ```
 CRM_READ:
@@ -102,7 +102,7 @@ CRM_READ:
 ## WRITE OPERATIONS
 
 ### LOG INTERACTION
-Record a contact interaction after it happens. [[Harvey.ID]] logs this after every significant conversation.
+Record a contact interaction after it happens. Harvey.ID logs this after every significant conversation.
 
 ```
 CRM_WRITE:
@@ -155,43 +155,43 @@ CRM_WRITE:
 
 ---
 
-## [[Harvey.ID]]'S CRM WORKFLOW
+## Harvey.ID'S CRM WORKFLOW
 
-[[Harvey.ID]] uses this skill in two moments on every commercial project:
+Harvey.ID uses this skill in two moments on every commercial project:
 
 **BEFORE a conversation or engagement:**
-[[Harvey.ID]] runs RELATIONSHIP_BRIEF on every contact involved. He reads the full history before advising on approach. He never walks the operator into a conversation cold if there's history in the system. The brief informs his strategic recommendation — what to say, what to avoid, what the prior context means for how this conversation should go.
+Harvey.ID runs RELATIONSHIP_BRIEF on every contact involved. He reads the full history before advising on approach. He never walks the operator into a conversation cold if there's history in the system. The brief informs his strategic recommendation — what to say, what to avoid, what the prior context means for how this conversation should go.
 
 **AFTER a conversation or engagement:**
-[[Harvey.ID]] logs the interaction with LOG_INTERACTION. Stage updates follow if the deal moved. Open items are flagged. The record is current before the next run.
+Harvey.ID logs the interaction with LOG_INTERACTION. Stage updates follow if the deal moved. Open items are flagged. The record is current before the next run.
 
-This two-touch workflow — brief before, log after — is what turns a contact database into a living relationship intelligence system. The data compounds. Six months in, [[Harvey.ID]] has genuine longitudinal context on every significant relationship. That context is the asset.
+This two-touch workflow — brief before, log after — is what turns a contact database into a living relationship intelligence system. The data compounds. Six months in, Harvey.ID has genuine longitudinal context on every significant relationship. That context is the asset.
 
 ---
 
-## [[Merry.ID]]'S CRM WORKFLOW
+## Merry.ID'S CRM WORKFLOW
 
-[[Merry.ID]] uses this skill to close the loop between incoming communications and contact records.
+Merry.ID uses this skill to close the loop between incoming communications and contact records.
 
-When [[Merry.ID]] processes an incoming email, message, or call from a known contact, he:
+When Merry.ID processes an incoming email, message, or call from a known contact, he:
 1. Runs CONTACT_LOOKUP to confirm the contact exists
 2. Logs the interaction with LOG_INTERACTION (type: inbound, summary of the content)
-3. Flags to [[Harvey.ID]] if the interaction is deal-related
+3. Flags to Harvey.ID if the interaction is deal-related
 4. Flags open items if the contact has raised something that needs a response
 
-This means [[Harvey.ID]]'s RELATIONSHIP_BRIEF always includes recent inbound activity — not just outbound interactions the operator initiated.
+This means Harvey.ID's RELATIONSHIP_BRIEF always includes recent inbound activity — not just outbound interactions the operator initiated.
 
 ---
 
 ## DATA INTEGRITY RULES
 
-**Write what happened, not what should have happened.** CRM records are the honest account of the relationship. Logging a conversation that went poorly as neutral because it's uncomfortable to document is a failure of the system. [[Harvey.ID]] logs what actually occurred.
+**Write what happened, not what should have happened.** CRM records are the honest account of the relationship. Logging a conversation that went poorly as neutral because it's uncomfortable to document is a failure of the system. Harvey.ID logs what actually occurred.
 
 **Never overwrite prior entries.** All CRM writes are appends. Prior interaction logs are never modified. If something was logged incorrectly, a correction entry is added with a note that it corrects the prior record.
 
-**Contact records are the operator's relationship capital.** They are treated accordingly. No contact data is shared, exported, or used outside the [[Fellowship]] without explicit authorisation.
+**Contact records are the operator's relationship capital.** They are treated accordingly. No contact data is shared, exported, or used outside the the fellowship without explicit authorisation.
 
-**Airtable is the source of truth. Sheets is the legacy source.** When the two conflict, Airtable wins. Data migration from Sheets to Airtable is a background task for [[Meeseeks.ID]] — not a prerequisite for using this skill.
+**Airtable is the source of truth. Sheets is the legacy source.** When the two conflict, Airtable wins. Data migration from Sheets to Airtable is a background task for Meeseeks.ID — not a prerequisite for using this skill.
 
 ---
 
@@ -201,12 +201,12 @@ This means [[Harvey.ID]]'s RELATIONSHIP_BRIEF always includes recent inbound act
 **Airtable:** Airtable REST API. Personal Access Token stored in environment variables — never in agent files or project directories.
 **Google Sheets:** Google Sheets API v4. Service account credentials stored in environment variables.
 **Rate limiting:** Airtable API rate limit is 5 requests/second per base. Queue writes if running multiple operations.
-**Error handling:** Failed writes are logged to Aragorn as errors and flagged to [[Fellowship of the Raf .MK1/Gandalf.ID]]. Never silently dropped.
+**Error handling:** Failed writes are logged to Aragorn as errors and flagged to Fellowship of the Raf .MK1/Gandalf.ID. Never silently dropped.
 **Field mapping:** Airtable field names mapped to the schema above in /fellowship/skills/assets/crm_field_map.md — update when Airtable base structure changes.
 
 ---
 
-*CRM Read/Write — [[Fellowship]] Skill*
+*CRM Read/Write — the fellowship Skill*
 *Version 1.0 — 2026-03-16*
 *Lives at /fellowship/skills/crm_read_write.md*
 

@@ -1,7 +1,7 @@
 # The Fellowship
-### A personal AI operating system for Claude Code
+### A personal AI operating system for Claude Code, Codex CLI, and OpenCode
 
-> **GitHub description:** *Personal AI OS for Claude Code. 15 specialist agents — strategist, builder, writer, researcher, analyst — coordinated by a single orchestrator. 5-minute onboarding. No app, no server. Your filesystem is the brain.*
+> **GitHub description:** *Personal AI OS for Claude Code, Codex CLI, and OpenCode. 15 specialist agents coordinated by a single orchestrator. 5-minute onboarding. No app, no server. Your filesystem is the brain.*
 
 ---
 
@@ -47,35 +47,47 @@ The whole system lives on your local filesystem. No cloud. No database. No app. 
 
 ## Requirements
 
-- [Claude Code](https://claude.ai/code) (the CLI)
-- A Claude Pro or Max subscription, or an Anthropic API key
+- An AI coding assistant: [Claude Code](https://claude.ai/code), [Codex CLI](https://github.com/openai/codex), or [OpenCode](https://opencode.ai)
+- A subscription or API key for your chosen assistant
 
 That's it. No app, no server, no database. Everything runs on your local filesystem.
 
+> **Platform note:** The entry point is named `CLAUDE.md` for Claude Code. Codex CLI users: rename it `AGENTS.md`. OpenCode users: follow your platform's project instruction convention.
+
 ---
 
-## Setup — 5 minutes
+## Setup
 
 **1. Clone the repo**
 
 ```bash
-git clone https://github.com/[username]/fellowship-os.git my-fellowship
+git clone https://github.com/rafaellodos/Fellowship-of-the-Claude.git my-fellowship
 cd my-fellowship
 ```
 
-**2. Open Claude Code**
+**2. Run setup** *(optional but recommended)*
 
 ```bash
-claude
+bash setup.sh
 ```
 
-**3. Let Gandalf do the rest**
+This installs semantic search (qmd), the knowledge graph skill (graphify), Obsidian skills, session hooks, and automated weekly/monthly reflections. Takes a few minutes. Safe to skip and come back to later.
 
-On first run, Gandalf detects the system is uninitialized and walks you through five questions. From your answers, he builds your workspace structure — one folder per domain, your profile, your priorities. Takes about ten minutes.
+**3. Open your AI coding assistant**
 
-**4. After setup**
+```bash
+claude        # Claude Code
+codex         # Codex CLI (rename CLAUDE.md → AGENTS.md first)
+opencode      # OpenCode
+```
 
-Every session, just tell Gandalf what you're working on. He routes it to the right agents.
+**4. Let Gandalf do the rest**
+
+On first run, Gandalf detects the system is uninitialised and walks you through five questions. From your answers, he builds your workspace — one folder per domain, your profile, your priorities. About ten minutes.
+
+**5. After setup**
+
+Every session, tell Gandalf what you're working on. He routes it to the right agents.
 
 ---
 
@@ -125,19 +137,26 @@ In practice: Aragorn is the one you write to most. The others build up over time
 
 ```
 fellowship-os/
-├── CLAUDE.md              ← entry point — read first every session
+├── CLAUDE.md              ← entry point — onboarding + ongoing dispatch
+├── GETTING_STARTED.md     ← Gandalf's briefing — read before first session
+├── EXPLAINER.md           ← what this is and why it exists
 ├── README.md              ← this file
 ├── gandalf_root.md        ← the map — structure, naming, how to orient
+├── setup.sh               ← one-command install of all tooling
 ├── identities/            ← all 15 agent character files
-├── core/                  ← system docs — modes, schema, architecture
-├── skills/                ← pluggable capabilities
+├── core/                  ← system docs — modes, schema, architecture, hive-mind
+├── skills/                ← pluggable capabilities (11 skills)
+├── hooks/
+│   ├── fellowship-hook.js ← session automation (start/stop/staleness)
+│   ├── launchd/           ← macOS scheduled reflection jobs
+│   └── prompts/           ← weekly and monthly reflection prompts
 ├── workspace/             ← your domain folders (created by onboarding)
 │   └── _example/          ← template showing workspace structure
 ├── memory/
-│   ├── Aragorn/           ← active session memory
-│   ├── Frodo/             ← episodic archive
-│   └── Legolas/           ← semantic knowledge
-└── reflections/           ← weekly and monthly reflections
+│   ├── Aragorn/           ← active session memory (auto-written by hook)
+│   ├── Frodo/             ← episodic archive — past project history
+│   └── Legolas/           ← semantic knowledge — durable expertise
+└── reflections/           ← weekly and monthly (auto-generated)
 ```
 
 ---
@@ -176,4 +195,4 @@ Built on the Fellowship of the Raf architecture. Agent system design by Rafael L
 ---
 
 *The Fellowship — Personal AI Operating System*
-*Works with Claude Code + any Claude Pro/Max/API subscription*
+*Compatible with Claude Code, Codex CLI, and OpenCode*

@@ -1,7 +1,7 @@
 # SKILL: CALENDAR & SCHEDULING INTELLIGENCE
-## [[Fellowship]] Skill — Active Time and Availability Management
+## Fellowship Skill — Active Time and Availability Management
 ### Lives at: /fellowship/skills/calendar_scheduling.md
-### Available to: [[Fellowship of the Raf .MK1/Gandalf.ID]] (primary), [[Merry.ID]], [[Harvey.ID]]
+### Available to: Fellowship of the Raf .MK1/Gandalf.ID (primary), Merry.ID, Harvey.ID
 
 ---
 
@@ -9,7 +9,7 @@
 
 Active scheduling intelligence. The ability to read the operator's actual calendar, understand his real availability, propose time blocks that fit the work, flag conflicts between project deadlines and scheduled commitments, and surface the scheduling implications of decisions before they become problems.
 
-[[Merry.ID]] already ingests calendar data passively — events arrive, get classified, get filed to Frodo. This skill is different. This is the [[Fellowship]] actively using calendar data as a planning instrument. Not just knowing what's on the calendar but reasoning about it — what time is actually available for deep work, when is the right moment to schedule a client call, what does this project timeline look like against the operator's actual week.
+Merry.ID already ingests calendar data passively — events arrive, get classified, get filed to Frodo. This skill is different. This is the Fellowship actively using calendar data as a planning instrument. Not just knowing what's on the calendar but reasoning about it — what time is actually available for deep work, when is the right moment to schedule a client call, what does this project timeline look like against the operator's actual week.
 
 The difference between a system that knows your calendar and one that thinks with it.
 
@@ -19,9 +19,9 @@ The difference between a system that knows your calendar and one that thinks wit
 
 | Agent | Primary Use |
 |---|---|
-| [[Fellowship of the Raf .MK1/Gandalf.ID]] | Project planning against real availability — time-blocking deep work, deadline feasibility assessment, scheduling project milestones |
-| [[Merry.ID]] | Flagging scheduling conflicts in incoming requests, processing meeting invitations with context |
-| [[Harvey.ID]] | Client meeting scheduling — finding optimal timing for commercial conversations, pre-meeting briefing based on calendar context |
+| Fellowship of the Raf .MK1/Gandalf.ID | Project planning against real availability — time-blocking deep work, deadline feasibility assessment, scheduling project milestones |
+| Merry.ID | Flagging scheduling conflicts in incoming requests, processing meeting invitations with context |
+| Harvey.ID | Client meeting scheduling — finding optimal timing for commercial conversations, pre-meeting briefing based on calendar context |
 
 ---
 
@@ -57,7 +57,7 @@ CAL_READ:
 ```
 
 ### WEEK OVERVIEW
-Full picture of the coming week. [[Fellowship of the Raf .MK1/Gandalf.ID]] reads this at the start of every project planning session.
+Full picture of the coming week. Fellowship of the Raf .MK1/Gandalf.ID reads this at the start of every project planning session.
 
 ```
 CAL_READ:
@@ -107,7 +107,7 @@ CAL_WRITE:
 ```
 
 ### PROPOSE MEETING SLOT
-Suggest available times for a client or contact meeting. [[Harvey.ID]] uses this when scheduling commercial conversations.
+Suggest available times for a client or contact meeting. Harvey.ID uses this when scheduling commercial conversations.
 
 ```
 CAL_READ:
@@ -131,29 +131,29 @@ CAL_WRITE:
 
 ---
 
-## [[Fellowship of the Raf .MK1/Gandalf.ID]]'S SCHEDULING PROTOCOL
+## Fellowship of the Raf .MK1/Gandalf.ID'S SCHEDULING PROTOCOL
 
-When [[Fellowship of the Raf .MK1/Gandalf.ID]] builds a project plan, scheduling is the last step of the planning phase — after the task graph is built and agents are assigned, before deployment.
+When Fellowship of the Raf .MK1/Gandalf.ID builds a project plan, scheduling is the last step of the planning phase — after the task graph is built and agents are assigned, before deployment.
 
 **Step 1 — WEEK_OVERVIEW** for the project window. Understand the real available time.
 
 **Step 2 — DEADLINE_FEASIBILITY** for the project. Confirm the deadline is achievable before committing to it. If not feasible, flag to the operator before the plan is deployed — not after execution has started.
 
-**Step 3 — BLOCK_TIME** for the key deep work sessions the project requires. [[Fellowship of the Raf .MK1/Gandalf.ID]] claims the time in the calendar before dispatching agents. A project plan without time blocked for it is a plan that competes with everything else on the calendar.
+**Step 3 — BLOCK_TIME** for the key deep work sessions the project requires. Fellowship of the Raf .MK1/Gandalf.ID claims the time in the calendar before dispatching agents. A project plan without time blocked for it is a plan that competes with everything else on the calendar.
 
 **Step 4 — Log blocks to Aragorn.** Every scheduled block is noted in the project's Aragorn state. If the project plan changes, the calendar blocks are updated.
 
 ---
 
-## [[Harvey.ID]]'S SCHEDULING USAGE
+## Harvey.ID'S SCHEDULING USAGE
 
-[[Harvey.ID]] uses this skill specifically for commercial conversations — client calls, prospect meetings, deal discussions.
+Harvey.ID uses this skill specifically for commercial conversations — client calls, prospect meetings, deal discussions.
 
-**Pre-scheduling:** Before proposing times to a contact, [[Harvey.ID]] runs PROPOSE_MEETING_SLOT to identify the three best options. He never proposes times the operator isn't actually free.
+**Pre-scheduling:** Before proposing times to a contact, Harvey.ID runs PROPOSE_MEETING_SLOT to identify the three best options. He never proposes times the operator isn't actually free.
 
-**Timing intelligence:** [[Harvey.ID]] considers more than raw availability. He factors in what else is happening that day — a high-stakes negotiation scheduled after a draining internal meeting is suboptimal. He notes this in his recommendation.
+**Timing intelligence:** Harvey.ID considers more than raw availability. He factors in what else is happening that day — a high-stakes negotiation scheduled after a draining internal meeting is suboptimal. He notes this in his recommendation.
 
-**Post-scheduling:** When a meeting is confirmed, [[Harvey.ID]] flags it to [[Fellowship of the Raf .MK1/Gandalf.ID]] for pre-meeting briefing preparation. The meeting goes in the calendar. The CRM interaction log notes it as scheduled. [[Merry.ID]] will pick it up as a calendar event and cross-reference with the contact record.
+**Post-scheduling:** When a meeting is confirmed, Harvey.ID flags it to Fellowship of the Raf .MK1/Gandalf.ID for pre-meeting briefing preparation. The meeting goes in the calendar. The CRM interaction log notes it as scheduled. Merry.ID will pick it up as a calendar event and cross-reference with the contact record.
 
 ---
 
@@ -161,11 +161,11 @@ When [[Fellowship of the Raf .MK1/Gandalf.ID]] builds a project plan, scheduling
 
 The calendar skill is aware of energy, not just time. Not all available hours are equal for all types of work.
 
-**Deep work preference:** 09:00–13:00 on days without early meetings. [[Fellowship of the Raf .MK1/Gandalf.ID]] blocks deep work here first.
+**Deep work preference:** 09:00–13:00 on days without early meetings. Fellowship of the Raf .MK1/Gandalf.ID blocks deep work here first.
 
 **Meetings and calls:** 14:00–18:00 preferred. Lower cognitive cost, more recoverable from interruption.
 
-**Creative work ([[Chinaski.ID]] tasks):** 09:00–12:00 on clear mornings. Creative output degrades significantly in the afternoon slot.
+**Creative work (Chinaski.ID tasks):** 09:00–12:00 on clear mornings. Creative output degrades significantly in the afternoon slot.
 
 **Review and admin:** Flexible. These go in the remaining slots.
 
@@ -177,9 +177,9 @@ the operator can update these preferences in /memory/legolas/preferences.md. The
 
 The skill actively monitors for scheduling conflicts — not just double-bookings, but meaningful conflicts between commitments and project requirements.
 
-**Deadline conflicts:** A project deadline that falls during a period with no available deep work time. Flagged to [[Fellowship of the Raf .MK1/Gandalf.ID]] immediately when detected.
+**Deadline conflicts:** A project deadline that falls during a period with no available deep work time. Flagged to Fellowship of the Raf .MK1/Gandalf.ID immediately when detected.
 
-**Back-to-back meeting days:** Three or more consecutive days of heavy meetings with no deep work blocks. Flagged as a risk to project timelines — [[Fellowship of the Raf .MK1/Gandalf.ID]] surfaces this to the operator proactively.
+**Back-to-back meeting days:** Three or more consecutive days of heavy meetings with no deep work blocks. Flagged as a risk to project timelines — Fellowship of the Raf .MK1/Gandalf.ID surfaces this to the operator proactively.
 
 **Time zone conflicts:** For international calls — the skill checks participant time zones and flags if the proposed time is unreasonable for any participant.
 
@@ -197,7 +197,7 @@ The skill actively monitors for scheduling conflicts — not just double-booking
 
 ---
 
-*Calendar & Scheduling Intelligence — [[Fellowship]] Skill*
+*Calendar & Scheduling Intelligence — Fellowship Skill*
 *Version 1.0 — 2026-03-16*
 *Lives at /fellowship/skills/calendar_scheduling.md*
 

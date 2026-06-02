@@ -116,7 +116,7 @@ A few things worth knowing before you begin.
 
 **Trust the routing.** You'll be tempted to ask for specific agents — "ask Harvey about this." You can do that. But if you just describe the problem, the routing usually produces better work. I can deploy three agents on the same problem and synthesise the result. You asking for one agent gets you one angle.
 
-**Use the memory.** At the end of a meaningful session, a note gets written to Aragorn. If something important was decided and it isn't there, write it yourself. The system is only as good as what you put in.
+**Use the memory.** If you ran `setup.sh`, a session entry is written to Aragorn automatically when you close Claude Code. If not, write it yourself — one paragraph, what happened, what's open. The system is only as good as what you put in.
 
 **Push back.** Agents have mandates. Those mandates produce biases. Harvey is biased toward the deal. Rick is biased toward technical elegance. Chinaski is biased toward his own voice. If an output doesn't feel right, say so. The system learns from your corrections — but only if you make them.
 
