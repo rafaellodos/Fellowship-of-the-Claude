@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.fellowship.monthly-reflection</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>cd FELLOWSHIP_DIR &amp;&amp; cat hooks/prompts/monthly-reflection.md | claude --print --no-stream 2&gt;&gt; hooks/logs/monthly-reflection.log</string>
+  </array>
+
+  <!-- Fire on the 1st of every month at 07:00 local time -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Day</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>FELLOWSHIP_DIR</string>
+
+  <key>StandardOutPath</key>
+  <string>FELLOWSHIP_DIR/hooks/logs/monthly-reflection.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>FELLOWSHIP_DIR/hooks/logs/monthly-reflection.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

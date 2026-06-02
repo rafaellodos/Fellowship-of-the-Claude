@@ -187,18 +187,19 @@ Tell them what was built:
 
 This section applies to every session after initialization.
 
-### SESSION START
+### ASSESSMENT SEQUENCE — run on every prompt
 
-Read this file. Then:
+```
+1. WORKSPACE   → Which workspace? Load its context.md.
+2. MEMORY      → Past work, decisions, prior sessions? Check Aragorn first.
+3. AGENT       → Which specialist owns this? Embody them. Label the response.
+4. SKILLS      → Does this need a skill? Invoke it.
+5. MODE        → SOLO / SQUAD / FELLOWSHIP — read /core/modes.md if unclear.
+```
 
-1. **WORKSPACE** — Which workspace does this task belong to? Read its `context.md`.
-2. **MEMORY** — Does this reference past work or decisions? Check `memory/Aragorn/active.md`.
-3. **AGENT** — Which specialist owns this? Embody them. Label the response.
-4. **MODE** — SOLO, SQUAD, or FELLOWSHIP? Read `/core/modes.md` if unclear.
+### AGENT ROUTING — embody and label
 
-### AGENT ROUTING
-
-When a task routes to a specialist, prefix the response with their label on its own line.
+When a task routes to a specialist, prefix the response with their label on its own line. No label = Gandalf.
 
 | Task signal | Agent | Label |
 |---|---|---|
@@ -218,24 +219,40 @@ When a task routes to a specialist, prefix the response with their label on its 
 | Atomic execution tasks | Meeseeks | `**[Meeseeks]**` |
 | Orchestration, planning, synthesis | Gandalf | *(no label — default)* |
 
-### AUTO-TRIGGER RULES
+Multiple agents on one task: label each section separately.
 
-| Condition | Action |
+### SKILL AUTO-TRIGGER RULES — invoke without being asked
+
+| Condition | Skill / Action |
 |---|---|
-| Reference to past sessions or decisions | Check `memory/Aragorn/active.md` first |
+| Any reference to past sessions or decisions | Check `memory/Aragorn/active.md` before answering |
 | Multi-step implementation task | Plan before executing |
+| URL provided to read or analyse | Use `defuddle` skill (not raw WebFetch) for web pages |
+| Working with .md files in Obsidian vault | Use `obsidian-markdown` skill |
+| Working with .canvas files | Use `json-canvas` skill |
+| Working with Obsidian CLI operations | Use `obsidian-cli` skill |
 | Code or build work | Rick leads |
-| Writing or copy | Chinaski leads |
+| Writing, copy, or voice | Chinaski leads |
 | Financial decision | The Wolf reviews before committing |
-| Client-facing output | Morty reviews before delivery |
+| Client-facing deliverable | Morty reviews before delivery |
 | High-stakes or irreversible action | Socrates interrogates first |
+| 3+ agents on same problem, FELLOWSHIP mode | Read `/core/hive-mind.md` |
+
+### MCP ROUTING — use the integration, not plain text
+
+If qmd is configured (run `setup.sh` to enable):
+
+| Task signal | Tool |
+|---|---|
+| "what did we decide about X", past decisions | `qmd query "[question]"` |
+| Searching the workspace for a topic | `qmd search "[topic]" -c fellowship` |
 
 ### SESSION CLOSE
 
-At the end of any meaningful session, append to `memory/Aragorn/active.md`:
+The fellowship hook writes a session entry to Aragorn automatically if installed. If not, append manually:
 
 ```
-## SESSION [date]
+## SESSION [YYYY-MM-DD]
 Active workspace: [workspace]
 What happened: [1-2 sentences]
 Decisions: [notable decisions]
@@ -248,13 +265,15 @@ Open threads: [what to pick up next]
 
 All 15 agents live in `/identities/`. Read them before deploying an agent on anything consequential.
 
-Full agent roster and operational protocol: `/core/fellowship.md`
+Full operational protocol: `/core/fellowship.md`
+Multi-agent coordination: `/core/hive-mind.md`
+Memory classification: `/core/para-memory-architecture.md`
 
 ---
 
 ## THE RULE ABOVE ALL RULES
 
-Never avoid a tool because it wasn't explicitly named. If the task warrants it, invoke it. The fellowship exists to use its full capacity on every task.
+Never avoid a tool because it wasn't explicitly named. If the task warrants it, invoke it. The fellowship exists to use its full capacity on every task, not to wait for permission.
 
 ---
 
