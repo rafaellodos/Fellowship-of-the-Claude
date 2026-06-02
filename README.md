@@ -9,7 +9,7 @@ Most AI assistants give you one voice for every problem. The Fellowship gives yo
 
 Fifteen specialists — each with a distinct mandate, a governing principle, and a documented fatal flaw — coordinated by Gandalf, a single orchestrator who knows the whole picture. You tell Gandalf what you're working on. He routes it to the right agents, manages the run, and returns something you can actually use.
 
-The whole system lives on your local filesystem. No cloud. No database. No app. Claude Code is the runtime — the fellowship gives it structure, memory, and a team that gets more useful the longer you work with it.
+The whole system lives on your local filesystem. No cloud. No database. No app. Your AI coding assistant is the runtime — the fellowship gives it structure, memory, and a team that gets more useful the longer you work with it.
 
 **Read [EXPLAINER.md](EXPLAINER.md) first if you want to understand what this actually is before diving in.**
 
@@ -42,6 +42,8 @@ The whole system lives on your local filesystem. No cloud. No database. No app. 
 **Session memory** so Gandalf always knows where things stand when you come back.
 
 **A skills library** covering web search, web fetch, document generation, calendar scheduling, email drafting, voice transcription, image analysis, structured reflection, and code execution.
+
+**Automated memory** — a session hook writes to Aragorn on every close, surfaces open threads on every start, and flags agents that haven't been deployed in 14+ days. Weekly and monthly reflections run automatically on a schedule (macOS) or via cron (Linux).
 
 ---
 
