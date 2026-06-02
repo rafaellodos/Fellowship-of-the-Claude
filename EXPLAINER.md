@@ -36,7 +36,9 @@ Over time, the fellowship accumulates context. The decisions you made, the clien
 
 ## What it requires
 
-A Claude Code subscription (Claude Pro, Max, or API). A terminal. That's it.
+An AI coding assistant and a terminal. That's it.
+
+The fellowship is built on the agent skills specification, which means it works with Claude Code, Codex CLI, and OpenCode out of the box. The entry point file (`CLAUDE.md`) is named for Claude Code — on Codex CLI, rename it `AGENTS.md`; OpenCode users follow their platform's equivalent convention. The agents, skills, and memory system are the same regardless.
 
 No server. No database. No setup beyond cloning a repo and answering five questions.
 
@@ -77,4 +79,4 @@ That's the fellowship.
 ---
 
 *The Fellowship — Personal AI Operating System*
-*Built on Claude Code*
+*Compatible with Claude Code, Codex CLI, and OpenCode*
