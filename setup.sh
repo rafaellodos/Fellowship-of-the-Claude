@@ -31,9 +31,11 @@ command -v python3 &>/dev/null && has_python=true  && ok "python3 $(python3 --ve
 command -v claude  &>/dev/null && has_claude=true  && ok "claude code detected"     || warn "claude CLI not found — reflections disabled"
 echo ""
 
-# ── 1. Create log directory ───────────────────────────────────────────────────
+# ── 1. Create directories ─────────────────────────────────────────────────────
 mkdir -p "$LOG_DIR"
 ok "logs directory: $LOG_DIR"
+mkdir -p "$FELLOWSHIP_DIR/workspace/inbox"
+ok "inbox directory: $FELLOWSHIP_DIR/workspace/inbox"
 echo ""
 
 # ── 2. qmd semantic search ────────────────────────────────────────────────────
@@ -119,32 +121,33 @@ echo ""
 echo "── Session hooks ────────────────────────"
 HOOK_CMD="node $FELLOWSHIP_DIR/hooks/fellowship-hook.js"
 
+RAW_HOOK_CMD="node $FELLOWSHIP_DIR/hooks/raw-detector-hook.js"
+
 if $has_node && [ -f "$SETTINGS" ] && $has_python; then
   python3 - <<PYEOF
 import json
 
 settings_path = '$SETTINGS'
-hook_cmd = '$HOOK_CMD'
+hook_cmd      = '$HOOK_CMD'
+raw_hook_cmd  = '$RAW_HOOK_CMD'
 
 try:
     with open(settings_path) as f:
         s = json.load(f)
 
+    # Standard hooks (session_start / stop / heartbeat)
     events = {
-        'SessionStart': 'session_start',
-        'Stop': 'stop',
-        'PostToolUse': 'heartbeat',
+        'SessionStart': f'{hook_cmd} session_start',
+        'Stop':         f'{hook_cmd} stop',
+        'PostToolUse':  f'{hook_cmd} heartbeat',
     }
 
     s.setdefault('hooks', {})
     installed = []
-    skipped = []
+    skipped   = []
 
-    for event, arg in events.items():
-        cmd = f'{hook_cmd} {arg}'
+    for event, cmd in events.items():
         entries = s['hooks'].setdefault(event, [])
-
-        # Check if already present
         already = any(
             h.get('command', '').strip() == cmd.strip()
             for entry in entries
@@ -153,14 +156,30 @@ try:
         if already:
             skipped.append(event)
             continue
+        if not entries:
+            entries.append({'hooks': []})
+        entries[0].setdefault('hooks', []).append({'type': 'command', 'command': cmd})
+        installed.append(event)
 
+    # UserPromptSubmit — raw paste detector (async, never blocks)
+    event   = 'UserPromptSubmit'
+    entries = s['hooks'].setdefault(event, [])
+    already = any(
+        h.get('command', '').strip() == raw_hook_cmd.strip()
+        for entry in entries
+        for h in entry.get('hooks', [])
+    )
+    if not already:
         if not entries:
             entries.append({'hooks': []})
         entries[0].setdefault('hooks', []).append({
-            'type': 'command',
-            'command': cmd
+            'type':    'command',
+            'command': raw_hook_cmd,
+            'async':   True,
         })
         installed.append(event)
+    else:
+        skipped.append(event)
 
     with open(settings_path, 'w') as f:
         json.dump(s, f, indent=2)

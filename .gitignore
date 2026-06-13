@@ -16,3 +16,6 @@ reflections/monthly/*
 !reflections/weekly/.gitkeep
 !reflections/monthly/.gitkeep
 !workspace/_example/**
+workspace/inbox/*
+!workspace/inbox/.gitkeep
+.session-state.json

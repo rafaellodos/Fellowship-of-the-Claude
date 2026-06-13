@@ -28,3 +28,26 @@ Keep it short. This is a record for the operator, not a performance. Write in Ga
 
 Save the file and write one line to `memory/Aragorn/active.md`:
 `[date] Weekly reflection written → reflections/weekly/[filename]`
+
+**After saving the reflection, run two additional tasks:**
+
+**TASK 2 — OBLIVION SWEEP**
+
+Run: `node hooks/oblivion-sweep.js --age 7`
+
+Read its output. For each item:
+- Stable knowledge → move to `workspace/[ws]/Oblivion/Wiki/` with brief frontmatter
+- Project output → move to `workspace/[ws]/Oblivion/Output/`
+- Inbox paste → classify workspace, move to correct `Oblivion/Raw/`, then process
+- Outdated → delete
+
+Process each item now. Do not defer.
+
+**TASK 3 — NEURAL LEARNING**
+
+Run: `node hooks/neural-learning.js`
+
+Read its output. If calibration candidates are flagged:
+- Note them in `memory/Aragorn/active.md`: `Evolution note [date]: [agent] flagged for calibration — [brief reason]`
+
+If nothing significant: write one line in Aragorn: `Evolution assessment [date]: no calibration warranted.`

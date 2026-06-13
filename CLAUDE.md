@@ -247,16 +247,71 @@ If qmd is configured (run `setup.sh` to enable):
 | "what did we decide about X", past decisions | `qmd query "[question]"` |
 | Searching the workspace for a topic | `qmd search "[topic]" -c fellowship` |
 
-### SESSION CLOSE
+### RAW DATA AUTO-CAPTURE — Pippin trigger
 
-The fellowship hook writes a session entry to Aragorn automatically if installed. If not, append manually:
+When a user message is long (>300 words) AND starts with content rather than an instruction (no "can you", "help", "what", "please", "I want", "I need", "build", "write", "fix" in the first line) AND contains structural formatting (headers, paragraphs, bullets) OR appears to be a pasted document, notes, or transcript:
 
+→ **Before processing the content**, invoke Pippin to:
+1. Classify the content type (notes, research, transcript, document, voice dump, etc.)
+2. Determine which workspace it belongs to
+3. Write to `workspace/[workspace]/Oblivion/Raw/[YYYY-MM-DD]-[brief-title].md`
+4. Confirm with one line: `"📥 Saved to [workspace]/Oblivion/Raw/[filename]"`
+5. Then process the content normally
+
+This is automatic. Do not wait for a command. If the content looks like a paste, save it.
+
+---
+
+### SESSION CLOSE PROTOCOL
+
+**Triggered by:** "close session", "save session", "wrap up", "end session", or similar intent.
+
+Run this sequence in full before the user exits.
+
+**STEP 1 — WORKSPACE**
+If not already known: "Which workspace was this session primarily for?"
+
+**STEP 2 — SESSION SUMMARY**
+Write a structured summary:
+- What happened (1-2 sentences)
+- Key decisions made (bullet list)
+- Plans or next actions that emerged
+- Open threads (what to pick up next)
+
+**STEP 3 — ARAGORN**
+Append to `memory/Aragorn/active.md`:
 ```
 ## SESSION [YYYY-MM-DD]
-Active workspace: [workspace]
+Workspace: [workspace]
 What happened: [1-2 sentences]
-Decisions: [notable decisions]
-Open threads: [what to pick up next]
+Key decisions:
+- [decision 1]
+Open threads:
+- [thread 1]
+```
+
+**STEP 4 — AGENT SIGNALS**
+For every agent that contributed — even briefly — append a signal line to `memory/Aragorn/active.md`:
+```
+## SIGNAL [YYYY-MM-DD] [AgentName]
+Task: [task type]
+Outcome: accepted / corrected / noted
+[If corrected: one line on what went wrong]
+```
+
+**STEP 5 — NEURAL LEARNING**
+```bash
+node hooks/neural-learning.js
+```
+Report the output. If calibration candidates are flagged, note them.
+
+**STEP 6 — CONFIRM**
+Print:
+```
+✓ Session saved — [workspace] — [duration]
+  Aragorn: written
+  Agents signalled: [list]
+  Neural: [findings or "no calibration warranted"]
 ```
 
 ---
